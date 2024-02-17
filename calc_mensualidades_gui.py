@@ -1,7 +1,11 @@
 from calc_mensualidades_metodos import mensualidades, variables_calculo
+from precios import precios
 import streamlit as st
 import time
 
+st.set_page_config(
+        page_title="AM - Mensualidades",
+)
 def prints(precio, separacion, anticipo, ant, restante, paquete):
     st.write(f'Total a pagar {paquete}: $ {precio:.2f}')
     st.write(f'Separacion: $ {separacion}')
@@ -9,9 +13,6 @@ def prints(precio, separacion, anticipo, ant, restante, paquete):
     st.write(f'Anticipo: $ {ant:.2f}')
     st.write(f'Restante $ {restante}')
 
-st.set_page_config(
-        page_title="AM - Mensualidades",
-)
 #logo de adriana 
 st.image('img/LOGO MORADO.png')
 #st.title('Adriana Martínez - Wedding Planner')
@@ -33,7 +34,7 @@ if meses_a_pagar:
 
 st.text('Seleccione el paquete a cotizar: ')
 if st.button('AM - Wedding Experience', use_container_width=True):
-    precio = 21999.99
+    precio = precios('Wedding Experience')
     ant, restante = variables_calculo(precio,separacion,porc_anticipo)
 
     prints(precio,separacion,anticipo,ant,restante,'Wedding Experience')
@@ -44,22 +45,22 @@ if st.button('AM - Wedding Experience', use_container_width=True):
         st.dataframe(df)
 
 
-if st.button('AM - The Big Day', use_container_width=True):
-    precio = 11999.99
+if st.button('AM - Wedding Day', use_container_width=True):
+    precio = precios('Wedding Day')
     ant, restante = variables_calculo(precio,separacion,porc_anticipo)
 
-    prints(precio,separacion,anticipo,ant,restante,'The Big Day')
+    prints(precio,separacion,anticipo,ant,restante,'Wedding Day')
 
     df = mensualidades(precio,meses_a_pagar, separacion, ant)
     with st.spinner('Generando...'):
         time.sleep(2)
         st.dataframe(df)
 
-if st.button('AM - Wedding Day', use_container_width=True):
-    precio = 7499.99
+if st.button('AM - Wedding Dream', use_container_width=True):
+    precio = precios('Wedding Dream')
     ant, restante = variables_calculo(precio,separacion,porc_anticipo)
 
-    prints(precio,separacion,anticipo,ant,restante,'Wedding Day')
+    prints(precio,separacion,anticipo,ant,restante,'Wedding Dream')
 
     df = mensualidades(precio,meses_a_pagar, separacion, ant)
     with st.spinner('Generando...'):
