@@ -23,7 +23,6 @@ def print_results(precio_expo,meses_a_pagar,separacion,ant):
 
 #logo de adriana 
 st.image('img/LOGO AMEP MORADO.png')
-#st.title('Adriana Martínez - Wedding Planner')
 st.header('Calculadora de mensualidades')
 
 #Tabla de precios
@@ -36,8 +35,6 @@ data = {
 df = pd.DataFrame(data)
 df.set_index("Servicio", inplace=True)
 st.table(df)
-
-precio = 0.0
 
 anticipo = st.text_input("Porcentaje de anticipo 👇", placeholder='30, 50')
 if anticipo:
@@ -55,32 +52,31 @@ st.text('Seleccione el paquete a cotizar: ')
 if st.button('AM - Wedding Experience', use_container_width=True):
     precio_totales = precios_totales('Wedding Experience')
     precio_expo = precios_expo('Wedding Experience')
+    try:
+        ant, restante = variables_calculo(separacion,porc_anticipo, precio_expo)
 
-    ant, restante = variables_calculo(separacion,porc_anticipo, precio_expo)
-
-    prints(precio_expo,separacion,anticipo,ant,restante,'Wedding Experience')
-    print_results(precio_expo,meses_a_pagar,separacion,ant)
-    # df = mensualidades(precio_expo,meses_a_pagar, separacion, ant)
-    # with st.spinner('Generando...'):
-    #     time.sleep(1)
-    #     st.table(df)
+        prints(precio_expo,separacion,anticipo,ant,restante,'Wedding Experience')
+        print_results(precio_expo,meses_a_pagar,separacion,ant)
+    except:
+        st.error('Ingrese los datos requeridos en los campos de arriba')
 
 if st.button('AM - Wedding Day', use_container_width=True):
     precio_totales = precios_totales('Wedding Day')
     precio_expo = precios_expo('Wedding Day')
+    try:
+        ant, restante = variables_calculo(separacion,porc_anticipo, precio_expo)
+        prints(precio_expo,separacion,anticipo,ant,restante,'Wedding Day')
+        print_results(precio_expo,meses_a_pagar,separacion,ant)
+    except:
+        st.error('Ingrese los datos requeridos en los campos de arriba')
 
-    ant, restante = variables_calculo(separacion,porc_anticipo, precio_expo)
-
-    prints(precio_expo,separacion,anticipo,ant,restante,'Wedding Day')
-
-    print_results(precio_expo,meses_a_pagar,separacion,ant)
 
 if st.button('AM - Wedding Dream', use_container_width=True):
     precio_totales = precios_totales('Wedding Dream')
     precio_expo = precios_expo('Wedding Dream')
-
-    ant, restante = variables_calculo(separacion,porc_anticipo, precio_expo)
-
-    prints(precio_expo,separacion,anticipo,ant,restante,'Wedding Dream')
-
-    print_results(precio_expo,meses_a_pagar,separacion,ant)
+    try:
+        ant, restante = variables_calculo(separacion,porc_anticipo, precio_expo)
+        prints(precio_expo,separacion,anticipo,ant,restante,'Wedding Dream')
+        print_results(precio_expo,meses_a_pagar,separacion,ant)
+    except:
+        st.error('Ingrese los datos requeridos en los campos de arriba')

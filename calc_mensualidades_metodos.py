@@ -3,13 +3,8 @@ from dateutil.relativedelta import relativedelta
 import pandas as pd
 
 def variables_calculo(separacion, porc_anticipo, precio_expo):
-
-    #adelanto = precio_expo - (precio_expo * porc_anticipo) - separacion
     adelanto = (precio_expo - separacion) * porc_anticipo
     restante = precio_expo - separacion - adelanto
-    print(adelanto)
-    print(restante)
-
     return adelanto, restante
 
 def mensualidades(precio,meses, separacion, anticipo):
