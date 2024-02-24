@@ -38,13 +38,19 @@ st.table(df)
 
 anticipo = st.text_input("Porcentaje de anticipo 👇", placeholder='30, 50')
 if anticipo:
-    porc_anticipo = int(anticipo)/100
+    if anticipo.isdigit():
+        porc_anticipo = int(anticipo)/100
+    else:
+        st.error('Por favor, ingresa un numero')
 
 separacion = st.text_input("Separacion 👇", placeholder='500')
 if separacion:
-    separacion = float(separacion)
+    if separacion.isdigit():
+        separacion = float(separacion)
+    else:
+        st.error('Por favor, ingresa un numero')        
 
-meses_a_pagar = st.text_input('Meses a financiar 👇', placeholder='3,6,9,12')
+meses_a_pagar = st.selectbox('Meses a financiar 👇',("3","6","9","12"))
 if meses_a_pagar:
     meses_a_pagar = int(meses_a_pagar)
 
