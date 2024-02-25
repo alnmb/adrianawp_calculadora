@@ -85,10 +85,9 @@ if st.button('AM - Wedding Day', use_container_width=True):
 if st.button('AM - Wedding Dream', use_container_width=True):
     precio_totales = precios_totales('Wedding Dream')
     precio_expo = precios_expo('Wedding Dream')
-    if meses_a_pagar != 18:
-        try:
-            ant, restante = variables_calculo(separacion,porc_anticipo, precio_expo)
-            prints(precio_expo,separacion,anticipo,ant,restante,'Wedding Dream')
-            print_results(precio_expo,meses_a_pagar,separacion,ant)
-        except:
-            st.error('Ingrese los datos requeridos en los campos de arriba')
+    try:
+        ant, restante = variables_calculo(separacion,porc_anticipo, precio_expo)
+        prints(precio_expo,separacion,anticipo,ant,restante,'Wedding Dream')
+        print_results(precio_expo,meses_a_pagar,separacion,ant)
+    except:
+        st.error('Ingrese los datos requeridos en los campos de arriba')
