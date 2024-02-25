@@ -50,8 +50,14 @@ if separacion:
     else:
         st.error('Por favor, ingresa un numero')        
 
-meses_a_pagar = st.selectbox('Meses a financiar 👇',("3","6","9","12"))
+meses_a_pagar = st.selectbox('Meses a financiar 👇',
+                             ('3','6','9','12','14 (Solo Dream y Experience)','18 (Solo Experience)'), 
+                             index=None)
 if meses_a_pagar:
+    if meses_a_pagar == '14 (Solo Dream y Experience)':
+        meses_a_pagar = '14'
+    if meses_a_pagar == '18 (Solo Experience)':
+        meses_a_pagar = '18'
     meses_a_pagar = int(meses_a_pagar)
 
 st.text('Seleccione el paquete a cotizar: ')
@@ -60,7 +66,6 @@ if st.button('AM - Wedding Experience', use_container_width=True):
     precio_expo = precios_expo('Wedding Experience')
     try:
         ant, restante = variables_calculo(separacion,porc_anticipo, precio_expo)
-
         prints(precio_expo,separacion,anticipo,ant,restante,'Wedding Experience')
         print_results(precio_expo,meses_a_pagar,separacion,ant)
     except:
@@ -69,20 +74,21 @@ if st.button('AM - Wedding Experience', use_container_width=True):
 if st.button('AM - Wedding Day', use_container_width=True):
     precio_totales = precios_totales('Wedding Day')
     precio_expo = precios_expo('Wedding Day')
-    try:
-        ant, restante = variables_calculo(separacion,porc_anticipo, precio_expo)
-        prints(precio_expo,separacion,anticipo,ant,restante,'Wedding Day')
-        print_results(precio_expo,meses_a_pagar,separacion,ant)
-    except:
-        st.error('Ingrese los datos requeridos en los campos de arriba')
-
+    if meses_a_pagar != 14 and meses_a_pagar != 18:
+        try:
+            ant, restante = variables_calculo(separacion,porc_anticipo, precio_expo)
+            prints(precio_expo,separacion,anticipo,ant,restante,'Wedding Day')
+            print_results(precio_expo,meses_a_pagar,separacion,ant)
+        except:
+            st.error('Ingrese los datos requeridos en los campos de arriba')
 
 if st.button('AM - Wedding Dream', use_container_width=True):
     precio_totales = precios_totales('Wedding Dream')
     precio_expo = precios_expo('Wedding Dream')
-    try:
-        ant, restante = variables_calculo(separacion,porc_anticipo, precio_expo)
-        prints(precio_expo,separacion,anticipo,ant,restante,'Wedding Dream')
-        print_results(precio_expo,meses_a_pagar,separacion,ant)
-    except:
-        st.error('Ingrese los datos requeridos en los campos de arriba')
+    if meses_a_pagar != 18:
+        try:
+            ant, restante = variables_calculo(separacion,porc_anticipo, precio_expo)
+            prints(precio_expo,separacion,anticipo,ant,restante,'Wedding Dream')
+            print_results(precio_expo,meses_a_pagar,separacion,ant)
+        except:
+            st.error('Ingrese los datos requeridos en los campos de arriba')
