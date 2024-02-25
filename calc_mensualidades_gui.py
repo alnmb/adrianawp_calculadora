@@ -51,12 +51,12 @@ if separacion:
         st.error('Por favor, ingresa un numero')        
 
 meses_a_pagar = st.selectbox('Meses a financiar 👇',
-                             ('3','6','9','12','14 (Solo Dream y Experience)','18 (Solo Experience)'), 
+                             ('3','6','9','12','14 (Solo Dream y Experience)','18 (Solo Dream y Experience)'), 
                              index=None)
 if meses_a_pagar:
     if meses_a_pagar == '14 (Solo Dream y Experience)':
         meses_a_pagar = '14'
-    if meses_a_pagar == '18 (Solo Experience)':
+    if meses_a_pagar == '18 (Solo Dream y Experience)':
         meses_a_pagar = '18'
     meses_a_pagar = int(meses_a_pagar)
 
